@@ -14,6 +14,7 @@
 		924D983C1DDFB8C800944B9C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 924D983A1DDFB8C800944B9C /* LaunchScreen.storyboard */; };
 		924D98471DDFB8C800944B9C /* Meme_Me_V1_0Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924D98461DDFB8C800944B9C /* Meme_Me_V1_0Tests.swift */; };
 		924D98521DDFB8C800944B9C /* Meme_Me_V1_0UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924D98511DDFB8C800944B9C /* Meme_Me_V1_0UITests.swift */; };
+		924D98611DE20EB400944B9C /* TextFieldDelegateClasses.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924D98601DE20EB400944B9C /* TextFieldDelegateClasses.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		924D984D1DDFB8C800944B9C /* Meme Me V1.0UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Meme Me V1.0UITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		924D98511DDFB8C800944B9C /* Meme_Me_V1_0UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme_Me_V1_0UITests.swift; sourceTree = "<group>"; };
 		924D98531DDFB8C800944B9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		924D98601DE20EB400944B9C /* TextFieldDelegateClasses.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldDelegateClasses.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 		924D98301DDFB8C800944B9C /* Meme Me V1.0 */ = {
 			isa = PBXGroup;
 			children = (
+				924D985F1DE20E7500944B9C /* UITextFieldDelegateClasses */,
 				924D98311DDFB8C800944B9C /* AppDelegate.swift */,
 				924D98331DDFB8C800944B9C /* ViewController.swift */,
 				924D98351DDFB8C800944B9C /* Main.storyboard */,
@@ -123,6 +126,14 @@
 				924D98531DDFB8C800944B9C /* Info.plist */,
 			);
 			path = "Meme Me V1.0UITests";
+			sourceTree = "<group>";
+		};
+		924D985F1DE20E7500944B9C /* UITextFieldDelegateClasses */ = {
+			isa = PBXGroup;
+			children = (
+				924D98601DE20EB400944B9C /* TextFieldDelegateClasses.swift */,
+			);
+			name = UITextFieldDelegateClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				924D98611DE20EB400944B9C /* TextFieldDelegateClasses.swift in Sources */,
 				924D98341DDFB8C800944B9C /* ViewController.swift in Sources */,
 				924D98321DDFB8C800944B9C /* AppDelegate.swift in Sources */,
 			);
