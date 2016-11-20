@@ -11,10 +11,39 @@ import UIKit
 
 class MemeTextFieldDelegateClass: NSObject, UITextFieldDelegate {
     
+    let memeTextAttributes:[String:Any] = [
+        NSStrokeColorAttributeName: UIColor.black,
+        NSForegroundColorAttributeName: UIColor.white,
+        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSStrokeWidthAttributeName: 20]
     
     
     
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+          var newText = textField.text! as NSString
+        
+          newText = newText.replacingCharacters(in: range, with: string) as NSString
+        
+        return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if let text = textField.text {
+            if text == "TOP" || text == "BOTTOM" {
+                textField.text = ""
+                
+            }
+        }
+        
+    }
     
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // figure out when this method should be called.
+        textField.resignFirstResponder()
+        return true
+    
+    }
+
 }
 
