@@ -13,6 +13,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var textField2: UITextField!
     @IBOutlet weak var textField1: UITextField!
+    @IBOutlet weak var toolBar: UIToolbar!
+    @IBOutlet weak var navigationBar: UIToolbar!
+    
     
     let topMemeDelegate = MemeTextFieldDelegateClass()
     let bottomMemeDelegate = MemeTextFieldDelegateClass()
@@ -23,6 +26,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         NSStrokeWidthAttributeName: -2.00]
     
+    
+    struct Meme {
+    /* This struct stores information about the Meme */
+        let topText: String?
+        let bottomText: String?
+        let originalImage: UIImage?
+        let memedImage: UIImage?
+        
+    
+    
+    
+    }
     
     
     
@@ -80,9 +95,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        let chosenImage: UIImage!
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
-            print(image)
             imagePickerView.image = image
+            generateMemedImage()
             dismiss(animated: true, completion: nil)
         }
 
@@ -92,11 +108,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         view.frame.origin.y -= getKeyboardHeight(notification: notification)
     }
+    func keyboardWillHide(_ notification: Notification) {
+        view.frame.origin.y += getKeyboardHeight(notification: notification)
+    }
 
     func getKeyboardHeight(notification: Notification) -> CGFloat {
         let userinfo = notification.userInfo
         let keyboardSize = userinfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
-        print(keyboardSize)
         return keyboardSize.cgRectValue.height
         
     }
@@ -104,11 +122,32 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func subscribeToKeyboardNotifications()  {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: .UIKeyboardWillHide, object: nil)
     }
 
     
     func unsubscribeToKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
+    }
+    func generateMemedImage() -> UIImage {
+        
+        toolBar.isHidden = true
+        navigationBar.isHidden = true
+        
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawHierarchy(in: view.frame, afterScreenUpdates: true)
+        let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+        
+        
+        
+        toolBar.isHidden = false
+        navigationBar.isHidden = false
+        
+        
+        
+        return memedImage
     }
 }
 

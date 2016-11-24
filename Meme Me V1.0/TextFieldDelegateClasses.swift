@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class MemeTextFieldDelegateClass: NSObject, UITextFieldDelegate {
+class MemeTextFieldDelegateClass: NSObject, UITextFieldDelegate  {
     
     let memeTextAttributes:[String:Any] = [
         NSStrokeColorAttributeName: UIColor.black,
@@ -36,7 +36,7 @@ class MemeTextFieldDelegateClass: NSObject, UITextFieldDelegate {
         }
         
     }
-    
+
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // figure out when this method should be called.
