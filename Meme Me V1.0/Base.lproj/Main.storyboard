@@ -25,7 +25,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EFX-rS-SGa">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                 <items>
-                                    <barButtonItem systemItem="action" id="Gs9-wX-Puv"/>
+                                    <barButtonItem systemItem="action" id="Gs9-wX-Puv">
+                                        <connections>
+                                            <action selector="callActivityViewController:" destination="BYZ-38-t0r" id="uD9-Tq-RVN"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="qU3-G0-MZ6"/>
                                     <barButtonItem title="Cancel" id="Wz6-jP-cVQ"/>
                                 </items>
@@ -90,6 +94,7 @@
                         <outlet property="cameraButton" destination="5ro-qB-lUn" id="Bq0-Vp-oyf"/>
                         <outlet property="imagePickerView" destination="14e-N9-HbC" id="0fd-xe-Poi"/>
                         <outlet property="navigationBar" destination="5rH-gq-PPg" id="IAP-Wt-tK7"/>
+                        <outlet property="shareButton" destination="Gs9-wX-Puv" id="u1v-ls-860"/>
                         <outlet property="textField1" destination="cle-WL-iPh" id="FxT-5H-gKO"/>
                         <outlet property="textField2" destination="unl-XT-CCA" id="6CB-Oy-khh"/>
                         <outlet property="toolBar" destination="EFX-rS-SGa" id="gFt-2Q-arc"/>

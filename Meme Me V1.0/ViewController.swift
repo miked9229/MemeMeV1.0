@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     @IBOutlet weak var imagePickerView: UIImageView!
@@ -15,6 +16,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var textField1: UITextField!
     @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var navigationBar: UIToolbar!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     
     
     let topMemeDelegate = MemeTextFieldDelegateClass()
@@ -44,6 +46,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        shareButton.isEnabled = false
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotifications()
     }
@@ -80,6 +83,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     }
 
+    @IBAction func callActivityViewController(_ sender: Any) {
+        print("ActivityViewController called")
+        let sharedActivityViewController = UIActivityViewController(activityItems: ["SMS"], applicationActivities: [])
+        
+        
+        
+        present(sharedActivityViewController, animated: true, completion: nil)
+        
+    
+    
+    }
     @IBAction func callPickAnImageViewController(_ sender: Any) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -95,13 +109,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        shareButton.isEnabled = true
         let chosenImage: UIImage!
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imagePickerView.image = image
             generateMemedImage()
             dismiss(animated: true, completion: nil)
         }
-
+        shareButton.isEnabled = true
     }
     
     func keyboardWillShow(_ notification:Notification) {
