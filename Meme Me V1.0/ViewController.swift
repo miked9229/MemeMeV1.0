@@ -67,6 +67,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         textField2.textAlignment = .center
         textField1.text = "TOP"
         textField2.text = "BOTTOM"
+        
+        
+        
+        if let image = imagePickerView.image {
+            shareButton.isEnabled = false
+        } else {
+            shareButton.isEnabled = true
+        }
 
     
     }
@@ -84,7 +92,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     @IBAction func callActivityViewController(_ sender: Any) {
-        print("ActivityViewController called")
         let sharedActivityViewController = UIActivityViewController(activityItems: ["SMS"], applicationActivities: [])
         
         
@@ -110,17 +117,14 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         shareButton.isEnabled = true
-        let chosenImage: UIImage!
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imagePickerView.image = image
-            generateMemedImage()
             dismiss(animated: true, completion: nil)
         }
         shareButton.isEnabled = true
     }
     
     func keyboardWillShow(_ notification:Notification) {
-        
         view.frame.origin.y -= getKeyboardHeight(notification: notification)
     }
     func keyboardWillHide(_ notification: Notification) {
@@ -164,5 +168,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         return memedImage
     }
+
 }
 
