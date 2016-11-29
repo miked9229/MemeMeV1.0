@@ -22,6 +22,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let topMemeDelegate = MemeTextFieldDelegateClass()
     let bottomMemeDelegate = MemeTextFieldDelegateClass()
     
+    
+    var generatedMeme: UIImage?
+    
+    
     let memeTextAttributes:[String:Any] = [
         NSStrokeColorAttributeName: UIColor.black,
         NSForegroundColorAttributeName: UIColor.white,
@@ -36,9 +40,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let originalImage: UIImage?
         let memedImage: UIImage?
         
-    
-    
-    
+
     }
     
     
@@ -46,7 +48,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        shareButton.isEnabled = false
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotifications()
     }
@@ -70,10 +71,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         
         
+        
+        
         if let image = imagePickerView.image {
-            shareButton.isEnabled = false
-        } else {
             shareButton.isEnabled = true
+        } else {
+            shareButton.isEnabled = false
         }
 
     
@@ -92,15 +95,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     @IBAction func callActivityViewController(_ sender: Any) {
-        let sharedActivityViewController = UIActivityViewController(activityItems: ["SMS"], applicationActivities: [])
+    
+        generatedMeme = generateMemedImage()
         
+        
+        var sharedActivityViewController = UIActivityViewController(activityItems: [generatedMeme], applicationActivities: [])
         
         
         present(sharedActivityViewController, animated: true, completion: nil)
         
-    
-    
+      sharedActivityViewController.completionWithItemsHandler = { (activity: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+        
+            self.save()
+        
+        }
     }
+    
+        
     @IBAction func callPickAnImageViewController(_ sender: Any) {
         let imagePicker = UIImagePickerController()
         imagePicker.delegate = self
@@ -116,12 +127,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        shareButton.isEnabled = true
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imagePickerView.image = image
+            shareButton.isEnabled = true
             dismiss(animated: true, completion: nil)
         }
-        shareButton.isEnabled = true
     }
     
     func keyboardWillShow(_ notification:Notification) {
@@ -168,6 +178,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         return memedImage
     }
-
+    func save() {
+        // Create the meme
+        let meme = Meme(topText: textField1.text!, bottomText: textField2.text!, originalImage: imagePickerView.image!, memedImage: generatedMeme!)
+        print("The save function was called")
+    }
+    
 }
 
