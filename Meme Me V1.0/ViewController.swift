@@ -65,10 +65,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
          configureTextField(textField: textField2, withtext: "BOTTOM", delegate: bottomMemeDelegate, textAttributes: memeTextAttributes)
         
         
-        
-        
-        
-        
         if let _ = imagePickerView.image {
             shareButton.isEnabled = true
         } else {
@@ -87,16 +83,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     @IBAction func callActivityViewController(_ sender: Any) {
-    
+        /* This method is called by the "Share" Button in the upper left hand corner and
+        it instantiates a UIActivityViewController */
+        
         generatedMeme = generateMemedImage()
         
         
-        var sharedActivityViewController = UIActivityViewController(activityItems: [generatedMeme], applicationActivities: [])
+        let sharedActivityViewController = UIActivityViewController(activityItems: [generatedMeme as Any], applicationActivities: [])
         
         
         present(sharedActivityViewController, animated: true, completion: nil)
         
-      sharedActivityViewController.completionWithItemsHandler = { (activity: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) in
+      sharedActivityViewController.completionWithItemsHandler = { (activity: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?)
+        /* this a completionWithItemsHandler closure and calls the save() method */
+        in
         
             self.save()
         
@@ -105,7 +105,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
         
     @IBAction func callPickAnImageViewController(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
         pickAnImage(sourceType: .photoLibrary)
     }
 
@@ -130,6 +129,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
 
     func getKeyboardHeight(notification: Notification) -> CGFloat {
+        /* This function returns the height of the keyboard and it is called in the 
+        above methods keyboardWillShow() and keyboardWillHide() */
+        
         let userinfo = notification.userInfo
         let keyboardSize = userinfo![UIKeyboardFrameEndUserInfoKey] as! NSValue
         return keyboardSize.cgRectValue.height
@@ -148,20 +150,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
     }
     func generateMemedImage() -> UIImage {
+        /* This function generates a memebed image by taking a screenshot */
         
-        toolBar.isHidden = true
-        navigationBar.isHidden = true
-        
+        configureToolAndNavBars(isNotAvailable: true)
         UIGraphicsBeginImageContext(view.frame.size)
         view.drawHierarchy(in: view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
         
-        
-        toolBar.isHidden = false
-        navigationBar.isHidden = false
-        
+        configureToolAndNavBars(isNotAvailable: false)
         
         
         return memedImage
@@ -172,6 +170,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func configureTextField(textField:UITextField, withtext text: String, delegate: UITextFieldDelegate, textAttributes: [String:Any]) {
+        /* This function configures the UITextFields displayed in the storyboard */
         
         textField.delegate = delegate
         textField.text! = text
@@ -180,15 +179,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func pickAnImage(sourceType: UIImagePickerControllerSourceType) {
-         let imagePickerController = UIImagePickerController()
+        /* the function instantiates a UIImagePickerController and passes
+        the source type */
+        
+        let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = sourceType
         present(imagePickerController, animated: true, completion: nil)
         
+    }
+    func configureToolAndNavBars(isNotAvailable: Bool) {
+        /* This function turns the navigation and tool bars on/off 
+        depending on the isNotAvailable Boolean */
         
         
-        
-        
+        toolBar.isHidden = isNotAvailable
+        navigationBar.isHidden = isNotAvailable
     }
     
 }
