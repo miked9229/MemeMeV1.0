@@ -22,6 +22,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let topMemeDelegate = MemeTextFieldDelegateClass()
     let bottomMemeDelegate = MemeTextFieldDelegateClass()
     
+
     
     var generatedMeme: UIImage?
     
@@ -50,6 +51,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewWillAppear(animated)
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         subscribeToKeyboardNotifications()
+        
+        
+        imagePickerView.contentMode = .scaleAspectFit
     }
     
     override func viewWillDisappear(_ animated: Bool) {
