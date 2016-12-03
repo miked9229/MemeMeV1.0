@@ -60,20 +60,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        textField1.delegate = topMemeDelegate
-        textField2.delegate = bottomMemeDelegate
-        textField1.defaultTextAttributes = memeTextAttributes
-        textField2.defaultTextAttributes = memeTextAttributes
-        textField1.textAlignment = .center
-        textField2.textAlignment = .center
-        textField1.text = "TOP"
-        textField2.text = "BOTTOM"
+        configureTextField(textField: textField1, withtext: "TOP", delegate: topMemeDelegate, textAttributes: memeTextAttributes)
+        
+         configureTextField(textField: textField2, withtext: "BOTTOM", delegate: bottomMemeDelegate, textAttributes: memeTextAttributes)
         
         
         
         
         
-        if let image = imagePickerView.image {
+        
+        if let _ = imagePickerView.image {
             shareButton.isEnabled = true
         } else {
             shareButton.isEnabled = false
@@ -180,8 +176,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     func save() {
         // Create the meme
-        let meme = Meme(topText: textField1.text!, bottomText: textField2.text!, originalImage: imagePickerView.image!, memedImage: generatedMeme!)
-        print("The save function was called")
+        let _ = Meme(topText: textField1.text!, bottomText: textField2.text!, originalImage: imagePickerView.image!, memedImage: generatedMeme!)
+    }
+    
+    func configureTextField(textField:UITextField, withtext text: String, delegate: UITextFieldDelegate, textAttributes: [String:Any]) {
+        
+        textField.delegate = delegate
+        textField.text! = text
+        textField.defaultTextAttributes = textAttributes
+        textField.textAlignment = .center
     }
     
 }
