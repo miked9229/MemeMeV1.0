@@ -79,8 +79,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func callPickAnImageFromCamera(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        pickAnImage(imagePickerController: imagePicker, sourceType: .camera)
+       
+        pickAnImage(sourceType: .camera)
     
     
     
@@ -106,7 +106,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
     @IBAction func callPickAnImageViewController(_ sender: Any) {
         let imagePicker = UIImagePickerController()
-        pickAnImage(imagePickerController: imagePicker, sourceType: .photoLibrary)
+        pickAnImage(sourceType: .photoLibrary)
     }
 
     
@@ -179,8 +179,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         textField.textAlignment = .center
     }
     
-    func pickAnImage(imagePickerController: UIImagePickerController, sourceType: UIImagePickerControllerSourceType) {
-        
+    func pickAnImage(sourceType: UIImagePickerControllerSourceType) {
+         let imagePickerController = UIImagePickerController()
         imagePickerController.delegate = self
         imagePickerController.sourceType = sourceType
         present(imagePickerController, animated: true, completion: nil)
