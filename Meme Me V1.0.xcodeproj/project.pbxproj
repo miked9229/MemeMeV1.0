@@ -204,6 +204,7 @@
 				TargetAttributes = {
 					924D982D1DDFB8C700944B9C = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = 59246CF2XH;
 						ProvisioningStyle = Automatic;
 					};
 					924D98411DDFB8C800944B9C = {
@@ -422,6 +423,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 59246CF2XH;
 				INFOPLIST_FILE = "Meme Me V1.0/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "FLEC.Meme-Me-V1-0";
@@ -434,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 59246CF2XH;
 				INFOPLIST_FILE = "Meme Me V1.0/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "FLEC.Meme-Me-V1-0";
@@ -515,6 +518,7 @@
 				924D98581DDFB8C800944B9C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		924D98591DDFB8C800944B9C /* Build configuration list for PBXNativeTarget "Meme Me V1.0Tests" */ = {
 			isa = XCConfigurationList;
@@ -523,6 +527,7 @@
 				924D985B1DDFB8C800944B9C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		924D985C1DDFB8C800944B9C /* Build configuration list for PBXNativeTarget "Meme Me V1.0UITests" */ = {
 			isa = XCConfigurationList;
@@ -531,6 +536,7 @@
 				924D985E1DDFB8C800944B9C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
