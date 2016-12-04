@@ -54,6 +54,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         
         imagePickerView.contentMode = .scaleAspectFit
+        toolBar.contentMode = .scaleAspectFit
+        navigationBar.contentMode = .scaleAspectFit
     }
     
     override func viewWillDisappear(_ animated: Bool) {
