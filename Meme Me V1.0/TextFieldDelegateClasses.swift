@@ -10,14 +10,7 @@ import Foundation
 import UIKit
 
 class MemeTextFieldDelegateClass: NSObject, UITextFieldDelegate  {
-    
-    let memeTextAttributes:[String:Any] = [
-        NSStrokeColorAttributeName: UIColor.black,
-        NSForegroundColorAttributeName: UIColor.white,
-        NSFontAttributeName: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSStrokeWidthAttributeName: 20]
-    
-    
+
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
           var newText = textField.text! as NSString
