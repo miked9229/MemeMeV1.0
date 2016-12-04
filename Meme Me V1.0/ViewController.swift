@@ -129,9 +129,10 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     }
     func keyboardWillHide(_ notification: Notification) {
         
-        if textField2.isFirstResponder {
+        if textField2.isFirstResponder || (textField1.isFirstResponder && textField2.text! != "BOTTOM") {
             view.frame.origin.y = 0
         }
+        
         
      
     }
