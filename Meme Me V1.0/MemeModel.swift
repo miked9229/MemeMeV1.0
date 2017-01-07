@@ -9,13 +9,14 @@
 import Foundation
 import UIKit
 
+
+
 struct Meme {
-    /* This struct stores information about the Meme */
-    let topText: String?
-    let bottomText: String?
-    let originalImage: UIImage?
-    let memedImage: UIImage?
-    
-    
+/* This struct stores information about the Meme */
+   let topText: String?
+   let bottomText: String?
+   let originalImage: UIImage?
+   let memedImage: UIImage?
+
 }
-    
+
