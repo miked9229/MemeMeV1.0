@@ -43,4 +43,9 @@ class MemeTableViewController: UITableViewController {
         
         return cell
     }
+
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
 }
