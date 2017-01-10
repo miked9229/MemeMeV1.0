@@ -10,6 +10,13 @@ import UIKit
 
 class MemeTableViewController: UITableViewController {
 
+    @IBAction func CallMemeViewController(_ sender: Any) {
+    
+        let memeViewController = storyboard!.instantiateViewController(withIdentifier: "MemeEditorViewController")
+        
+        present(memeViewController, animated: true, completion: nil)
+    
+    }
     var memes: [Meme]!
     
     override func viewDidLoad() {

@@ -19,6 +19,12 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var navigationBar: UIToolbar!
     @IBOutlet weak var shareButton: UIBarButtonItem!
     
+    @IBAction func InstantiateTabBarController(_ sender: Any) {
+        let TabBarViewController = storyboard!.instantiateViewController(withIdentifier: "TabBarController")
+        
+        present(TabBarViewController, animated: true, completion: nil)
+    
+    }
     
     let topMemeDelegate = MemeTextFieldDelegateClass()
     let bottomMemeDelegate = MemeTextFieldDelegateClass()
@@ -215,5 +221,6 @@ class MemeEditorViewController: UIViewController, UIImagePickerControllerDelegat
         navigationBar.isHidden = isNotAvailable
     }
     
+
 }
 
