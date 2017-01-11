@@ -7,17 +7,14 @@
 //
 
 import UIKit
+import Foundation
+
 
 class MemeTableViewController: UITableViewController {
 
-    @IBAction func CallMemeViewController(_ sender: Any) {
-    
-        let memeViewController = storyboard!.instantiateViewController(withIdentifier: "MemeEditorViewController")
-        
-        present(memeViewController, animated: true, completion: nil)
-    
-    }
     var memes: [Meme]!
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +22,16 @@ class MemeTableViewController: UITableViewController {
         memes = appDelegate.memes
         // Do any additional setup after loading the view.
     }
+    @IBAction func callMemeViewController(_ sender: Any) {
+    let memeViewController = storyboard!.instantiateViewController(withIdentifier: "MemeEditorViewController")
+            
+    present(memeViewController, animated: true, completion: nil)
+            
+        }
+    
+    
+    
+    
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return memes.count
@@ -53,7 +60,6 @@ class MemeTableViewController: UITableViewController {
             tableView.deleteRows(at: [indexPath], with: .fade)
             
         }
-            
-        }
+    }
 
 }
